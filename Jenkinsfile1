@@ -3,21 +3,21 @@ pipeline {
     stages{
         stage('Build Maven'){
             steps{
-                git url:'https://github.com/akshu20791/Banking-java-project/', branch: "master"
+                git url:'https://github.com/Augustine78/Banking-project.git', branch: "master"
                sh 'mvn clean install'
             }
         }
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t akshu20791/endtoendproject31july:v1 .'
+                    sh 'docker build -t augustine325/endtoendproject31july:v1 .'
                 }
             }
         }
           stage('Docker login') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-pwd', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                    sh "echo $PASS | docker login -u $USER --password-stdin"
+                withCredentials([string(credentialsId: 'dockerpass', variable: 'dockervar')]){
+                    sh 'docker login -u augustine325 -p ${dockervar}'
                     sh 'docker push akshu20791/endtoendproject31july:v1'
                 }
             }
