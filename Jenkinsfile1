@@ -13,7 +13,7 @@ tools{
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t augustine325/finance-me:1.0 .'
+                    sh 'docker build -t augustine325/endtoendproject31july:v1 .'
                 }
             }
         }
@@ -21,7 +21,7 @@ tools{
             steps {
                 withCredentials([string(credentialsId: 'docker', variable: 'dockervar')]){
                     sh 'docker login -u augustine325 -p ${dockervar}'
-                    sh 'docker push augustine325/finance-me:1.0'
+                    sh 'docker push augustine325/endtoendproject31july:v1'
                 }
             }
         }
