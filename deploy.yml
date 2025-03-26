@@ -16,4 +16,4 @@
     become: yes
     become_user: root
   - name: Deploy the Image from DockerHub and Run as Container
-    command: docker run -itd -p 8969:8081 augustine325/myimg
+    command: docker run -itd -p 8757:8081 augustine325/staragileprojectfinance:v1
