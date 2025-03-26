@@ -30,7 +30,7 @@ tools{
        
         stage('port expose'){
             steps{
-                sh 'docker run -dt -p 8095:8091 --name c004 augustine325/endtoendproject31july:v1'
+                sh 'docker run -dt -p 8096:8091 --name c005 augustine325/endtoendproject31july:v1'
             }
         }  
         stage('Ansible Playbook') {
