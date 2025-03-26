@@ -27,14 +27,10 @@ tools{
         }
         
         
-        stage('run dockerfile'){
-          steps{
-               sh 'docker build -t augustine325/myimg .'
-           }
-         }
+       
         stage('port expose'){
             steps{
-                sh 'docker run -dt -p 8090:8091 --name c003 augustine325/endtoendproject31july:v1'
+                sh 'docker run -dt -p 8095:8091 --name c004 augustine325/endtoendproject31july:v1'
             }
         }  
         stage('Ansible Playbook') {
