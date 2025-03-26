@@ -24,14 +24,20 @@ pipeline {
         }
         
         
-        stage('Deploy to k8s'){
-            
+        stage('run dockerfile'){
+          steps{
+               sh 'docker build -t augustine325/myimg .'
+           }
+         }
+        stage('port expose'){
             steps{
-                script{
-                     kubernetesDeploy (configs: 'deploymentservice.yaml' ,kubeconfigId: 'k8sconfigpwd')
-                   
-                }
+                sh 'docker run -dt -p 8091:8091 --name c000 augustine325/myimg'
             }
-        }
+        }  
+        stage('Ansible Playbook') {
+          steps {
+            ansiblePlaybook credentialsId: 'sshkey', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploymentservice.yaml', vaultTmpPath: ''
+                                       }
+            }
     }
 }
