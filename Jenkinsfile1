@@ -16,7 +16,7 @@ pipeline {
         }
           stage('Docker login') {
             steps {
-                withCredentials([string(credentialsId: 'dockerpass', variable: 'dockervar')]){
+                withCredentials([string(credentialsId: 'docker', variable: 'dockervar')]){
                     sh 'docker login -u augustine325 -p ${dockervar}'
                     sh 'docker push augustine325/endtoendproject31july:v1'
                 }
