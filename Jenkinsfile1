@@ -31,7 +31,7 @@ pipeline {
          }
         stage('port expose'){
             steps{
-                sh 'docker run -dt -p 8091:8091 --name c001 augustine325/myimg'
+                sh 'docker run -dt -p 8090:8091 --name c001 augustine325/myimg'
             }
         }  
         stage('Ansible Playbook') {
