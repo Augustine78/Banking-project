@@ -26,10 +26,15 @@ tools{
             }
         }
          
-        stage('Ansible Playbook') {
-          steps {
-            ansiblePlaybook credentialsId: 'sshkey', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploy.yml', vaultTmpPath: ''
+       
+             stage('Deploy to k8s'){
+            when{ expression {env.GIT_BRANCH == 'master'}}
+            steps{
+                script{
+                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
+                   
+                    }
+                }
                                        }
             }
     }
-}
