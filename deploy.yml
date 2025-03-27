@@ -16,4 +16,4 @@
     become: yes
     become_user: root
   - name: Deploy the Image from DockerHub and Run as Container
-    command: docker run -itd -p 8082:8081 augustine325/endtoendproject31july:v1
+    command: docker run -itd -p 8082:8091 augustine325/endtoendproject31july:v1
